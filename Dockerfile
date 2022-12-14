@@ -12,7 +12,7 @@ RUN cp /tmp/favicon.ico /opt/conda/share/jupyterhub/static/favicon.ico || true &
     pip install git+https://github.com/NeCTAR-RC/nectar-jupyterlab-theme.git
 
 
-RUN python3 -m pip install jupyter-rsession-proxy jupyter-server-proxy && \
+RUN pip install git+https://github.com/jupyterhub/jupyter-rsession-proxy.git jupyter-server-proxy && \
     jupyter labextension install @jupyterlab/server-proxy
 
 USER root
