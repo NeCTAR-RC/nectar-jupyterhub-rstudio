@@ -1,5 +1,5 @@
 [gerrit]
 host=review.rc.nectar.org.au
 port=29418
-project=NeCTAR-RC/jupyter-minimal-notebook.git
+project=NeCTAR-RC/nectar-jupyterhub-rstudio.git
 defaultbranch=master
