@@ -6,7 +6,6 @@ WORKDIR /root
 # Install R-Studio and some common R module dependencies
 RUN curl --silent -L --fail https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2024.04.2-764-amd64.deb > /root/rstudio.deb && \
     apt update && \
-    apt install -y libgdal-dev libgeos-dev libproj-dev && \
     apt install -y /root/rstudio.deb && \
     apt clean && \
     rm -rf /var/lib/apt/lists/* \
