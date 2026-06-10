@@ -4,7 +4,7 @@ USER root
 
 RUN curl --silent -L --fail https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2026.05.0-218-amd64.deb > /tmp/rstudio.deb && \
     apt-get update && \
-    apt-get install -y /tmp/rstudio.deb && \
+    apt-get install -y /tmp/rstudio.deb nodejs libudunits2-dev && \
     rm /tmp/rstudio.deb && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -20,17 +20,13 @@ ENV PATH=$PATH:/usr/lib/rstudio-server/bin
 USER ${NB_USER}
 WORKDIR $HOME
 
-# Branding (Favicons)
-COPY favicon.ico /tmp
-RUN find /opt/conda -name "favicon.ico" -exec cp /tmp/favicon.ico {} \;
-
-# R Packages
+# Install common R Packages
 RUN mamba install -v -y \
     r-ggplot2 r-dplyr r-tidyr r-janitor r-here r-arrow \
     r-mgcv r-lme4 r-caret r-randomForest r-lattice \
     r-tidyverse r-tidymodels r-lubridate r-zoo \
     r-data.table r-devtools r-XML r-jsonlite r-knitr \
-    r-rmarkdown r-gbm r-dismo r-terra && \
+    r-rmarkdown r-gbm r-dismo r-terra r-sf r-gt && \
     mamba clean --all -f -y
 
 # Switch back to Root for final cleanup and scoped fixes
