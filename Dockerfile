@@ -1,8 +1,8 @@
-FROM quay.io/jupyter/r-notebook:hub-5.4.3
+FROM quay.io/jupyter/r-notebook:hub-5.4.6
 
 USER root
 
-RUN curl --silent -L --fail https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2026.04.0-526-amd64.deb > /tmp/rstudio.deb && \
+RUN curl --silent -L --fail https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2026.05.0-218-amd64.deb > /tmp/rstudio.deb && \
     apt-get update && \
     apt-get install -y /tmp/rstudio.deb && \
     rm /tmp/rstudio.deb && \
