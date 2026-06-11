@@ -33,7 +33,9 @@ RUN mamba install -v -y \
 USER root
 
 # Surgical Fix for R & Final Permissions
+# Configures both the system LD_LIBRARY_PATH and the persistent local user library location
 RUN echo "LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:\${LD_LIBRARY_PATH}" >> /opt/conda/lib/R/etc/Renviron.site && \
+    echo "R_LIBS_USER=\${R_LIBS_USER:-'~/R/%p-library/%v'}" >> /opt/conda/lib/R/etc/Renviron.site && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 
